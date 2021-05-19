@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 //funcion anonima
 //callback
-Route::get('variables' , function(){
+/*Route::get('variables' , function(){
     //definir una variable
     //en php
     $mensaje = 20;
@@ -32,9 +32,9 @@ Route::get('variables' , function(){
     
 
 
-});
+});*/
 
-Route::get('arreglos' , function(){
+/*Route::get('arreglos' , function(){
     //Arreglo: es una estructura de datos
     $estudiantes = [ 'AN'=>"Ana" , 
                      'MA'=>"Maria" , 
@@ -42,7 +42,7 @@ Route::get('arreglos' , function(){
     echo "<pre>";
     var_dump($estudiantes);
     echo "</pre>";
-});
+});*/
 
 Route::get('paises', function(){
 
@@ -64,7 +64,7 @@ Route::get('paises', function(){
             ];
 
 
-    foreach($paises as $nombre => $pais){
+    /*foreach($paises as $nombre => $pais){
     echo "<pre>";
     echo "<h1>$nombre</h1>";
     print_r($pais ["capital"] . "<br />");
@@ -73,15 +73,17 @@ Route::get('paises', function(){
     echo "</pre>";
     echo "<hr />";
 
-    }
+    }*/
 
-    $suma = 0;
-    foreach($paises as $nombre => $pais){
-        $suma+= $pais["poblacion"];
-    }
-
-    echo "La suma de los paises es $suma";
     
-
+    
+    //llamar una vista 
+    //con datos de paises
+    //alias: nombre con el cual se reconocen los datos en las vistas
+    return view('paises')->with("naciones" , $paises);
 
 });
+
+Route::get('formulario_buscador', "MetabuscadorController@formulario_buscador" );
+
+Route::post('buscar' , "MetabuscadorController@buscar" );
